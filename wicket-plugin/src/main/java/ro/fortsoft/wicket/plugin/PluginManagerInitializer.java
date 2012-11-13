@@ -1,0 +1,93 @@
+/*
+ * Copyright 2012 Decebal Suiu
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with
+ * the License. You may obtain a copy of the License in the LICENSE file, or at:
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
+ */
+package ro.fortsoft.wicket.plugin;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.wicket.Application;
+import org.apache.wicket.IInitializer;
+import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.protocol.http.WebApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import ro.fortsoft.pf4j.DefaultPluginManager;
+import ro.fortsoft.pf4j.PluginManager;
+import ro.fortsoft.pf4j.PluginWrapper;
+
+/**
+ * @author Decebal Suiu
+ */
+public class PluginManagerInitializer implements IInitializer {
+
+	private static final Logger LOG = LoggerFactory.getLogger(PluginManagerInitializer.class);
+	
+	@SuppressWarnings("serial")
+	public static MetaDataKey<PluginManager> PLUGIN_MANAGER_KEY = new MetaDataKey<PluginManager>() {};
+	
+	private PluginManager pluginManager;
+	
+	@Override
+	public void init(Application application) {
+		pluginManager = createPluginManager(application);
+        if (pluginManager != null) {
+        	pluginManager.loadPlugins();
+        	pluginManager.startPlugins();
+        }        
+        
+        List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
+        
+        // init started wicket plugins
+		for (PluginWrapper plugin : startedPlugins) {
+			if (plugin.getPlugin() instanceof WicketPlugin) {
+				((WicketPlugin) plugin.getPlugin()).init(application);
+			}
+		}
+        
+        // mount resources for each started plugin
+        LOG.debug("startedPlugins = " + startedPlugins);
+        for (PluginWrapper plugin : startedPlugins) {
+        	((WebApplication) application).mount(new PluginResourceMapper(plugin));
+        }
+        
+        // store plugin manager in application
+        application.setMetaData(PLUGIN_MANAGER_KEY, pluginManager);
+	}
+
+	@Override
+	public void destroy(Application application) {
+		// stop started plugins in reverse order
+		List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
+		Collections.reverse(startedPlugins);
+		for (PluginWrapper plugin : startedPlugins) {
+			if (plugin.getPlugin() instanceof WicketPlugin) {
+				((WicketPlugin) plugin.getPlugin()).destroy(application);
+			}
+		}
+		
+		pluginManager.stopPlugins();
+	}
+
+	protected PluginManager createPluginManager(Application application) {
+		String pluginsDirectory = System.getProperty("app.pluginsDir", "plugins");
+        LOG.debug("pluginsDirectory = " + pluginsDirectory);
+        if (pluginsDirectory != null) {
+            return new DefaultPluginManager(new File(pluginsDirectory));
+        }
+
+		return null; 
+	}
+
+}
