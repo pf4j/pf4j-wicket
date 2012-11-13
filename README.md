@@ -14,7 +14,7 @@ In your pom.xml you must define the dependencies to wicket plugin artifacts with
 ```xml
 <dependency>
     <groupId>ro.fortsoft.wicket.plugin</groupId>
-    <artifactId>wicket-plugin/artifactId>
+    <artifactId>wicket-plugin</artifactId>
     <version>${wicket-plugin.version}</version>
 </dependency>
 ```
