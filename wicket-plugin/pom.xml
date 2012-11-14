@@ -105,7 +105,20 @@
             <version>${wicket.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency> 
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-ioc</artifactId>
+            <version>${wicket.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
+        <!-- Inject annotation -->
+        <dependency> 
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        
         <!-- Logs -->
         <dependency>
             <groupId>log4j</groupId>

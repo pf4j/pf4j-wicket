@@ -70,6 +70,9 @@ public class PluginManagerInitializer implements IInitializer {
         
         // store plugin manager in application
         application.setMetaData(PLUGIN_MANAGER_KEY, pluginManager);
+        
+        // add PluginComponentInjector
+        application.getComponentInstantiationListeners().add(new PluginComponentInjector(application));
 	}
 
 	@Override

@@ -94,7 +94,7 @@ public class PluginResourceMapper extends AbstractMapper {
 
 		// fetch the resource name
 		String name = getResourceName(url);
-		System.out.println("resourceName = " + name);
+//		System.out.println("resourceName = " + name);
 
 		return new PluginResourceRequestHandler(plugin, name, parameters);
 	}

@@ -76,18 +76,23 @@ In below code I supply an extension for the `Section` extension point.
 
 You can retrieve all extensions for `Section` (SimpleSection extends Section) extension point (see demo/app/.../HomePage.java) with:
 
-    ...
+    public class HomePage extends WebPage {
     
-    // retrieves all extensions of section
-    PluginManager pluginManager = WicketApplication.get().getPluginManager();
-    List<Section> extensions = pluginManager.getExtensions(Section.class);
-    sections.addAll(extensions);
+        @Inject
+        private List<Section> sectionExtensions; // this field is populate by wicket-plugin
 
-    // add tabbed panel to page
-    List<ITab> tabs = new ArrayList<ITab>(sections);
-    add(new ImageTabbedPanel("tabs", tabs));
-    
-    ...
+        public HomePage() {     
+            ...
+
+            // add section extensions
+            sections.addAll(sectionExtensions);
+
+            // add tabbed panel to page
+            List<ITab> tabs = new ArrayList<ITab>(sections);
+            add(new ImageTabbedPanel("tabs", tabs));
+        }
+        
+    }
 
 For more information please see the demo sources.
 
@@ -97,7 +102,6 @@ TODO
 on Application.init()
 
 - getApplicationSettings().setClassResolver(new PluginClassResolver());
-- getComponentInstantiationListeners().add(new PluginExtensionInjector());    // <-- enables @Inject
 
 Demo
 -------------------

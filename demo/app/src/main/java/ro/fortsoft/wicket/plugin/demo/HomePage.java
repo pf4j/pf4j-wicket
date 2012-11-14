@@ -15,16 +15,16 @@ package ro.fortsoft.wicket.plugin.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
-import ro.fortsoft.pf4j.PluginManager;
 import ro.fortsoft.wicket.plugin.demo.api.Section;
 import ro.fortsoft.wicket.plugin.demo.api.SimpleSection;
 import ro.fortsoft.wicket.plugin.demo.api.tab.ImageTabbedPanel;
@@ -36,7 +36,10 @@ public class HomePage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
 
-	public HomePage(final PageParameters parameters) {		
+	@Inject
+	private List<Section> sectionExtensions;
+	
+	public HomePage() {		
 		List<Section> sections = new ArrayList<Section>();
 
 		// add default/main section
@@ -48,8 +51,6 @@ public class HomePage extends WebPage {
 		sections.add(defaultSection);
 		
 		// add section extensions
-		PluginManager pluginManager = WicketApplication.get().getPluginManager();
-		List<Section> sectionExtensions = pluginManager.getExtensions(Section.class);
 //		System.out.println("sectionExtensions = " + sectionExtensions);
 		sections.addAll(sectionExtensions);
 
