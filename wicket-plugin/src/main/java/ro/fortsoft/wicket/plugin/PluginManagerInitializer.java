@@ -42,22 +42,28 @@ public class PluginManagerInitializer implements IInitializer {
 	@Override
 	public void init(Application application) {
 		pluginManager = createPluginManager(application);
-        if (pluginManager != null) {
-        	pluginManager.loadPlugins();
-        	pluginManager.startPlugins();
-        }        
+        if (pluginManager == null) {
+        	throw new RuntimeException("Plugin manager cannot be null");
+        }
         
-        List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
+        // load plugins        
+        pluginManager.loadPlugins();
         
-        // init started wicket plugins
-		for (PluginWrapper plugin : startedPlugins) {
+        // init plugins
+        List<PluginWrapper> resolvedPlugins = pluginManager.getResolvedPlugins();
+		for (PluginWrapper plugin : resolvedPlugins) {
 			if (plugin.getPlugin() instanceof WicketPlugin) {
 				((WicketPlugin) plugin.getPlugin()).init(application);
 			}
 		}
+
+		// start plugins
+        pluginManager.startPlugins();        
+        
+        List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
+        LOG.debug("startedPlugins = " + startedPlugins);        
         
         // mount resources for each started plugin
-        LOG.debug("startedPlugins = " + startedPlugins);
         for (PluginWrapper plugin : startedPlugins) {
         	((WebApplication) application).mount(new PluginResourceMapper(plugin));
         }
@@ -68,16 +74,18 @@ public class PluginManagerInitializer implements IInitializer {
 
 	@Override
 	public void destroy(Application application) {
-		// stop started plugins in reverse order
 		List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
 		Collections.reverse(startedPlugins);
+
+		// stop plugins
+		pluginManager.stopPlugins();
+		
+		// destroy started plugins in reverse order
 		for (PluginWrapper plugin : startedPlugins) {
 			if (plugin.getPlugin() instanceof WicketPlugin) {
 				((WicketPlugin) plugin.getPlugin()).destroy(application);
 			}
-		}
-		
-		pluginManager.stopPlugins();
+		}		
 	}
 
 	protected PluginManager createPluginManager(Application application) {
