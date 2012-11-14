@@ -91,6 +91,14 @@ You can retrieve all extensions for `Section` (SimpleSection extends Section) ex
 
 For more information please see the demo sources.
 
+TODO
+-------------------
+
+on Application.init()
+
+- getApplicationSettings().setClassResolver(new PluginClassResolver());
+- getComponentInstantiationListeners().add(new PluginExtensionInjector());    // <-- enables @Inject
+
 Demo
 -------------------
 
