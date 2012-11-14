@@ -37,6 +37,58 @@ It's very easy to use wicket-plugin. All you need to do is to add a dependency t
 The main challenge for you to transform a monolithic wicket application in a modular wicket application is to identify what's your extension points and 
 to write extensions for these extension point in your plugins.
 
+You can define an extension point in your application using **ExtensionPoint** interface marker.
+
+    public abstract class Section extends AbstractImageTab implements ExtensionPoint {
+
+        public Section(IModel<String> title) {
+            super(title);
+        }
+
+    }
+
+In below code I supply an extension for the `Section` extension point.
+
+    public class WelcomePlugin extends WicketPlugin {
+
+        private static WelcomePlugin instance;
+        
+        public WelcomePlugin(PluginWrapper wrapper) {
+            super(wrapper);
+            
+            instance = this;
+        }
+
+        public static WelcomePlugin get() {
+            return instance;
+        }
+        
+        @Extension
+        public static class WelcomeSection extends SimpleSection {
+
+            public WelcomeSection() {
+                super(Model.of("Welcome Plugin"), Model.of(PluginUtils.getPluginResourceUrl(WelcomePlugin.get().getWrapper(), "tab-image.png")));
+            }
+
+        }
+
+    }
+
+You can retrieve all extensions for `Section` (SimpleSection extends Section) extension point (see demo/app/.../HomePage.java) with:
+
+    ...
+    
+    // retrieves all extensions of section
+    PluginManager pluginManager = WicketApplication.get().getPluginManager();
+    List<Section> extensions = pluginManager.getExtensions(Section.class);
+    sections.addAll(extensions);
+
+    // add tabbed panel to page
+    List<ITab> tabs = new ArrayList<ITab>(sections);
+    add(new ImageTabbedPanel("tabs", tabs));
+    
+    ...
+
 For more information please see the demo sources.
 
 Demo
