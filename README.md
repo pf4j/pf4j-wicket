@@ -74,7 +74,7 @@ In below code I supply an extension for the `Section` extension point.
 
     }
 
-You can use @Inject to retrieve all extensions for `Section` extension point (see demo/app/.../HomePage.java).
+You can use **@Inject** to retrieve all extensions for `Section` extension point (see demo/app/.../HomePage.java).
 
     public class HomePage extends WebPage {
     
@@ -94,7 +94,7 @@ You can use @Inject to retrieve all extensions for `Section` extension point (se
         
     }
 
-Another option (without annotation) to retrieves all extensions for an extension point is pluginManager.getExtensions(Section.class).
+Another option (without annotation) to retrieves all extensions for an extension point is **pluginManager.getExtensions(Section.class)**.
 
 For more information please see the demo sources.
 
