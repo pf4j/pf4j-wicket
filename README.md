@@ -40,7 +40,7 @@ to write extensions for these extension point in your plugins.
 The plugins are stored in a folder. You can specify the plugins folder in many way:
 - set `wicket.pluginsDir` system property
 - servlet <context-param> with name `pluginsDir` (in your web.xml file)
-- filter <init-param> with name `pluginsDir` (in your web.xml file)
+- filter <init-param> with name `pluginsDir` (in your web.xml file)   
 The default value for plugins folder is 'plugins'.
 
 You can define an extension point in your application using **ExtensionPoint** interface marker.
