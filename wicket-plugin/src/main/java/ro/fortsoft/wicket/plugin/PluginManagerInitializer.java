@@ -19,7 +19,9 @@ import java.util.List;
 import org.apache.wicket.Application;
 import org.apache.wicket.IInitializer;
 import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.application.CompoundClassResolver;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.mapper.CompoundRequestMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,10 +65,19 @@ public class PluginManagerInitializer implements IInitializer {
         List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
         LOG.debug("startedPlugins = " + startedPlugins);        
         
-        // mount resources for each started plugin
+        // mount plugin resources for each started plugin
+        CompoundRequestMapper requestMapper = new CompoundRequestMapper();
         for (PluginWrapper plugin : startedPlugins) {
-        	((WebApplication) application).mount(new PluginResourceMapper(plugin));
+        	requestMapper.add(new PluginResourceMapper(plugin));
         }
+        ((WebApplication) application).mount(requestMapper);
+        
+        // set class resolver
+        CompoundClassResolver classResolver = new CompoundClassResolver();
+        for (PluginWrapper plugin : startedPlugins) {
+        	classResolver.add(new PluginClassResolver(plugin));
+        }
+        application.getApplicationSettings().setClassResolver(classResolver);
         
         // store plugin manager in application
         application.setMetaData(PLUGIN_MANAGER_KEY, pluginManager);
