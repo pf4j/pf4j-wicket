@@ -37,6 +37,12 @@ It's very easy to use wicket-plugin. All you need to do is to add a dependency t
 The main challenge for you to transform a monolithic wicket application in a modular wicket application is to identify what's your extension points and 
 to write extensions for these extension point in your plugins.
 
+The plugins are stored in a folder. You can specify the plugins folder in many way:
+- set `wicket.pluginsDir` system property
+- servlet <context-param> with name `pluginsDir` (in your web.xml file)
+- filter <init-param> with name `pluginsDir` (in your web.xml file)
+The default value for plugins folder is 'plugins'.
+
 You can define an extension point in your application using **ExtensionPoint** interface marker.
 
     public abstract class Section extends AbstractImageTab implements ExtensionPoint {

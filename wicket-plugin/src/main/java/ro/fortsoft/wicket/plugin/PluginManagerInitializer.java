@@ -103,13 +103,31 @@ public class PluginManagerInitializer implements IInitializer {
 	}
 
 	protected PluginManager createPluginManager(Application application) {
-		String pluginsDirectory = System.getProperty("app.pluginsDir", "plugins");
-        LOG.debug("pluginsDirectory = " + pluginsDirectory);
-        if (pluginsDirectory != null) {
-            return new DefaultPluginManager(new File(pluginsDirectory));
+		File pluginsDir = getPluginsDir(application); 
+        LOG.debug("pluginsDir = " + pluginsDir);
+        if (pluginsDir != null) {
+            return new DefaultPluginManager(pluginsDir);
         }
 
 		return null; 
 	}
 
+	protected File getPluginsDir(Application application) {
+		String pluginsDir = System.getProperty("wicket.pluginsDir");
+		
+		// if no system parameter check filter/servlet <init-param> and <context-param>
+		if (pluginsDir == null) {
+			pluginsDir = ((WebApplication) application).getInitParameter("pluginsDir");
+		}
+		
+		if (pluginsDir == null) {
+			pluginsDir = ((WebApplication) application).getServletContext().getInitParameter("pluginsDir");
+		}
+		
+		if (pluginsDir == null) {
+			pluginsDir = "plugins";
+		}
+
+		return new File(pluginsDir);
+	}
 }
