@@ -98,13 +98,6 @@ Another option (without annotation) to retrieves all extensions for an extension
 
 For more information please see the demo sources.
 
-TODO
--------------------
-
-on Application.init()
-
-- getApplicationSettings().setClassResolver(new PluginClassResolver());
-
 Demo
 -------------------
 
