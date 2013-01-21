@@ -3,7 +3,7 @@
     
     <parent>
         <groupId>ro.fortsoft.wicket.plugin</groupId>
-        <artifactId>pom</artifactId>
+        <artifactId>wicket-plugin-parent</artifactId>
         <version>0.3-SNAPSHOT</version>
     </parent>
 
