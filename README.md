@@ -5,7 +5,6 @@ A simple plugin framework for wicket based on [PF4J] (https://github.com/decebal
 
 Components
 -------------------
-
 - **PluginManagerInitializer** creates the plugin manager and register the created plugin manager in application using MetaDataKey.
 This class load, init, start, stop and destroy plugins (using the plugin manager object). Also this class creates an PluginResourceMapper for 
 each started plugin.
@@ -17,7 +16,6 @@ each started plugin.
 
 Using Maven
 -------------------
-
 In your pom.xml you must define the dependencies to wicket plugin artifacts with:
 
 ```xml
@@ -30,9 +28,10 @@ In your pom.xml you must define the dependencies to wicket plugin artifacts with
 
 where ${wicket-plugin.version} is the last wicket plugin version.
 
+You may want to check for the latest released version using [Maven Search](http://search.maven.org/#search%7Cga%7C1%7Cwicket-plugin)
+
 How to use
 -------------------
-
 It's very easy to use wicket-plugin. All you need to do is to add a dependency to wicket-plugin in your pom.xml.
 The main challenge for you to transform a monolithic wicket application in a modular wicket application is to identify what's your extension points and 
 to write extensions for these extension point in your plugins.
@@ -107,7 +106,6 @@ For more information please see the demo sources.
 
 Demo
 -------------------
-
 I have a tiny demo application. The demo application is in demo folder.
 In demo/api folder I declared an extension point (_Section_) that is a tab in a wicket TabbedPanel.
 Each section has an title, an icon and a content (a simple text message in my demo).
@@ -121,7 +119,6 @@ In the internet browser type http://localhost:8081/.
 
 License
 --------------
-  
 Copyright 2012 Decebal Suiu
  
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with
