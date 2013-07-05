@@ -9,6 +9,10 @@ import org.apache.wicket.injection.Injector;
 import ro.fortsoft.pf4j.PluginManager;
 
 /**
+ * The injector scans the component class for fields annotated by @javax.inject.Inject, 
+ * looks up extensions of the required type for the given field from the plugin manager, and injects 
+ * the extensions.
+ * 
  * @author Decebal Suiu
  */
 public class PluginComponentInjector extends Injector implements IComponentInstantiationListener {

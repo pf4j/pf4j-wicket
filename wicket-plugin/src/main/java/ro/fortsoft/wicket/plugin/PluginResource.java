@@ -15,10 +15,10 @@ package ro.fortsoft.wicket.plugin;
 import java.io.File;
 import java.net.URL;
 
+import org.apache.wicket.core.util.resource.UrlResourceStream;
 import org.apache.wicket.request.resource.ResourceStreamResource;
 import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
-import org.apache.wicket.util.resource.UrlResourceStream;
 
 import ro.fortsoft.pf4j.Plugin;
 import ro.fortsoft.pf4j.PluginClassLoader;
@@ -70,7 +70,7 @@ public class PluginResource extends ResourceStreamResource {
 	@SuppressWarnings("unchecked")
 	private Class<? extends Plugin> getPluginClass() {
 		PluginDescriptor descriptor = plugin.getDescriptor();
-		PluginClassLoader classLoader = descriptor.getPluginClassLoader();
+		PluginClassLoader classLoader = plugin.getPluginClassLoader();
 		try {
 			return (Class<? extends Plugin>) classLoader.loadClass(descriptor.getPluginClass());
 		} catch (ClassNotFoundException e) {
