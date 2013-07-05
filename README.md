@@ -117,6 +117,11 @@ To run the demo application use:
     
 In the internet browser type http://localhost:8081/.
 
+Mailing list
+--------------
+
+Much of the conversation between developers and users is managed through [mailing list] (http://groups.google.com/group/wicket-plugin).
+
 License
 --------------
 Copyright 2012 Decebal Suiu
