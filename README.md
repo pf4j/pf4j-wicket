@@ -73,7 +73,7 @@ In below code I supply an extension for the `Section` extension point.
         public static class WelcomeSection extends SimpleSection {
 
             public WelcomeSection() {
-                super(Model.of("Welcome Plugin"), Model.of(PluginUtils.getPluginResourceUrl(WelcomePlugin.get().getWrapper(), "tab-image.png")));
+        		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getPluginResourceUrl("tab-image.png")));
             }
 
         }

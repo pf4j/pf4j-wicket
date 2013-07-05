@@ -16,7 +16,6 @@ import org.apache.wicket.model.Model;
 
 import ro.fortsoft.pf4j.Extension;
 import ro.fortsoft.pf4j.PluginWrapper;
-import ro.fortsoft.wicket.plugin.PluginUtils;
 import ro.fortsoft.wicket.plugin.WicketPlugin;
 import ro.fortsoft.wicket.plugin.demo.api.SimpleSection;
 
@@ -51,7 +50,7 @@ public class WelcomePlugin extends WicketPlugin {
     	private static final long serialVersionUID = 1L;
 
 		public WelcomeSection() {
-    		super(new Model<String>("Welcome Plugin"), Model.of(PluginUtils.getPluginResourceUrl(WelcomePlugin.get().getWrapper(), "datasource.png")));
+    		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getPluginResourceUrl("datasource.png")));
     	}
 
     }
