@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# This script creates and run the pf4j demo.
+# This script creates and run the wicket-plugin demo.
 #
 
 # create and install artifacts using maven
