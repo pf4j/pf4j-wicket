@@ -20,9 +20,6 @@ import org.apache.wicket.request.resource.ResourceStreamResource;
 import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
 
-import ro.fortsoft.pf4j.Plugin;
-import ro.fortsoft.pf4j.PluginClassLoader;
-import ro.fortsoft.pf4j.PluginDescriptor;
 import ro.fortsoft.pf4j.PluginWrapper;
 
 /**
@@ -50,7 +47,7 @@ public class PluginResource extends ResourceStreamResource {
 	@Override
 	protected IResourceStream getResourceStream() {
 //		System.out.println("[[[ " + name);
-		URL resourceUrl = getPluginClass().getResource(name);
+		URL resourceUrl = plugin.getPlugin().getClass().getResource(name);
 //		System.out.println("resourceUrl = " + resourceUrl);
 		if (resourceUrl != null) {
 			return new UrlResourceStream(resourceUrl);
@@ -67,16 +64,4 @@ public class PluginResource extends ResourceStreamResource {
 		return resourceFile;
 	}
 	
-	@SuppressWarnings("unchecked")
-	private Class<? extends Plugin> getPluginClass() {
-		PluginDescriptor descriptor = plugin.getDescriptor();
-		PluginClassLoader classLoader = plugin.getPluginClassLoader();
-		try {
-			return (Class<? extends Plugin>) classLoader.loadClass(descriptor.getPluginClass());
-		} catch (ClassNotFoundException e) {
-			// never happening
-			throw new RuntimeException(e);
-		}
-	}
-
 }
