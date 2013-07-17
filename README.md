@@ -11,8 +11,7 @@ each started plugin.
 - **PluginResourceMapper** maps Request to PluginResourceRequestHandler and PluginResourceRequestHandler into Url (plugin/plugin-id/...).
 - **PluginResourceRequestHandler** responds with a PluginResource for each request with URL like plugin/plugin-id/...
 - **PluginResource** extends ResourceStreamResource and returns an UrlResourceStream (if exists a resource in plugin class loader) or a FileResourceStream.
-- **WicketPlugin** is a Plugin that implements IInitializer (hook for init/destroy application).
-- **PluginUtils** contains two important methods getPluginResourceUrl(PluginWrapper scope, String name) and getPluginResource(PluginWrapper scope, String name).
+- **WicketPlugin** is a Plugin that implements IInitializer (hook for init/destroy application). Also each WicketPlugin contains methods for resource handling (getResourceUrl(String name), getResource(String name))
 
 Using Maven
 -------------------
@@ -73,7 +72,7 @@ In below code I supply an extension for the `Section` extension point.
         public static class WelcomeSection extends SimpleSection {
 
             public WelcomeSection() {
-        		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getPluginResourceUrl("tab-image.png")));
+        		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getResourceUrl("tab-image.png")));
             }
 
         }
