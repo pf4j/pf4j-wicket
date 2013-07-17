@@ -52,7 +52,7 @@ public class HelloPlugin extends WicketPlugin {
     	private static final long serialVersionUID = 1L;
 
 		public HelloSection() {
-    		super(Model.of("Hello Plugin"), Model.of(HelloPlugin.get().getPluginResourceUrl("settings.png")));
+    		super(Model.of("Hello Plugin"), Model.of(HelloPlugin.get().getResourceUrl("settings.png")));
     	}
 
     }

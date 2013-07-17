@@ -50,7 +50,7 @@ public class WelcomePlugin extends WicketPlugin {
     	private static final long serialVersionUID = 1L;
 
 		public WelcomeSection() {
-    		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getPluginResourceUrl("datasource.png")));
+    		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getResourceUrl("datasource.png")));
     	}
 
     }

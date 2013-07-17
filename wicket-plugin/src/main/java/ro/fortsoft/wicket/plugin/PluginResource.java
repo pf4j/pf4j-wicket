@@ -37,7 +37,7 @@ public class PluginResource extends ResourceStreamResource {
 	private File resourceFile;
 	
 	public PluginResource(PluginWrapper plugin, String name) {
-		super(null);
+		super();
 		
 		this.plugin = plugin;
 		this.name = name;

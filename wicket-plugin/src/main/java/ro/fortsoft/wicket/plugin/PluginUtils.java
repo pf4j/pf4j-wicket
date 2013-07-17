@@ -13,7 +13,6 @@
 package ro.fortsoft.wicket.plugin;
 
 import org.apache.wicket.request.cycle.RequestCycle;
-import org.apache.wicket.request.resource.IResource;
 
 import ro.fortsoft.pf4j.PluginWrapper;
 
@@ -26,7 +25,7 @@ public class PluginUtils {
 		return RequestCycle.get().urlFor(new PluginResourceRequestHandler(scope, name, null)).toString();	
 	}
 	
-	public static IResource getPluginResource(PluginWrapper scope, String name) {
+	public static PluginResource getPluginResource(PluginWrapper scope, String name) {
 		return new PluginResource(scope, name);
 	}
 

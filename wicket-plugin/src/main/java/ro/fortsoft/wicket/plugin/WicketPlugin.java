@@ -36,11 +36,11 @@ public class WicketPlugin extends Plugin implements IInitializer  {
 	public void destroy(Application application) {
 	}
 	
-	public final String getPluginResourceUrl(String name) {
+	public final String getResourceUrl(String name) {
 		return PluginUtils.getPluginResourceUrl(getWrapper(), name);
 	}
 	
-	public final IResource getPluginResource(String name) {
+	public final IResource getResource(String name) {
 		return PluginUtils.getPluginResource(getWrapper(), name);
 	}
 
