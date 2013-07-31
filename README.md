@@ -1,7 +1,9 @@
 Plugin framework for Wicket
 =====================
 
-A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).
+A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
+
+Current build status: [![Build Status](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/badge/icon)](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/)
 
 Components
 -------------------
