@@ -43,6 +43,7 @@ public class WicketApplication extends WebApplication {
 		getResourceSettings().setThrowExceptionOnMissingResource(false);		
 	}
 
+	@Override
 	public Class<HomePage> getHomePage() {
 		return HomePage.class;
 	}
