@@ -11,8 +11,8 @@ mvn clean install
 cd demo/app
 rm -fr plugins
 mkdir plugins
-cp ../plugin1/target/wicket-plugin-demo-plugin1-*.zip plugins/
-cp ../plugin2/target/wicket-plugin-demo-plugin2-*.zip plugins/
+cp ../plugins/plugin1/target/wicket-plugin-demo-plugin1-*.zip plugins/
+cp ../plugins/plugin2/target/wicket-plugin-demo-plugin2-*.zip plugins/
 
 # run demo
 mvn jetty:run

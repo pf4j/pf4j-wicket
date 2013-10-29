@@ -17,8 +17,7 @@
     <modules>
         <module>app</module>
         <module>api</module>
-        <module>plugin1</module>
-        <module>plugin2</module>
+        <module>plugins</module>
     </modules>
 
 </project>

@@ -9,8 +9,8 @@ REM create 'plugins' folder
 cd demo/app
 rmdir plugins /s/q
 mkdir plugins
-xcopy ..\plugin1\target\wicket-plugin-demo-plugin1-*.zip plugins /s
-xcopy ..\plugin2\target\wicket-plugin-demo-plugin2-*.zip plugins /s
+xcopy ..\plugins\plugin1\target\wicket-plugin-demo-plugin1-*.zip plugins /s
+xcopy ..\plugins\plugin2\target\wicket-plugin-demo-plugin2-*.zip plugins /s
 
 REM run demo
 call mvn jetty:run
