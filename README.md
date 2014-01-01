@@ -110,7 +110,7 @@ Demo
 I have a tiny demo application. The demo application is in demo folder.
 In demo/api folder I declared an extension point (_Section_) that is a tab in a wicket TabbedPanel.
 Each section has an title, an icon and a content (a simple text message in my demo).
-In demo/plugin* I implemented two plugins: plugin1, plugin2 (each plugin adds an extension for _Section_).
+In demo/plugins/* I implemented two plugins: plugin1, plugin2 (each plugin adds an extension for _Section_).
 
 To run the demo application use:  
  
