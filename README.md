@@ -2,13 +2,16 @@ Plugin framework for Wicket
 =====================
 
 A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
+
+Current build status: [![Build Status](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/badge/icon)](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/)
+
+Features/Benefits
+-------------------
 This framework is lightweight (around 10KB) with minimal dependencies (only pf4j).  
-In the demo application you can see two plugins: one that contributes with some JavaScript files to the head of page and the second that contributes with a Css file to the head of page.
+
 The beauty of this framework is that you can start with a monolithic application and as the application grows in complexity you can split the code (without modifications) in multiple plugins.  
 First create a package for each future plugin in your monolithic application. After this move each package in a plugin structure. You can play in each plugin with PackageResoure, PackageResourceReference, ... 
 from wicket without be aware that your code is located in a plugin.
-
-Current build status: [![Build Status](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/badge/icon)](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/)
 
 Components
 -------------------
@@ -59,14 +62,6 @@ You can define an extension point in your application using **ExtensionPoint** i
 
 In below code I supply an extension for the `Section` extension point.
 
-    @Extension
-    public static class WelcomeSection extends Section {
-
-    	private static final long serialVersionUID = 1L;
-
-
-    }
-
     public class WelcomePlugin extends WicketPlugin {
 
         private static WelcomePlugin instance;
@@ -77,7 +72,7 @@ In below code I supply an extension for the `Section` extension point.
             instance = this;
         }
 
-        public static WelcomePlugin get() {
+        public static WelcomePlugin get() { // for a quick access to this plugin (it's optional)
             return instance;
         }
         
@@ -138,7 +133,7 @@ You can use **@Inject** to retrieve all extensions for `Section` extension point
         
     }
 
-Another option (without annotation) to retrieves all extensions for an extension point is **pluginManager.getExtensions(Section.class)**.
+Another option (without annotation) to retrieves all extensions for an extension point is **pluginManager.getExtensions(Section.class)**.   
 For example:
 	
 	PluginManager pluginManager = Application.get().getMetaData(PluginManagerInitializer.PLUGIN_MANAGER_KEY);
@@ -152,6 +147,8 @@ I have a tiny demo application. The demo application is in demo folder.
 In demo/api folder I declared an extension point (_Section_) that is a tab in a wicket TabbedPanel.
 Each section has an title, an icon and a content (a simple text message in my demo).
 In demo/plugins/* I implemented two plugins: plugin1, plugin2 (each plugin adds an extension for _Section_).
+
+The first plugin contributes with some JavaScript files to the head of page and the second plugin contributes with a Css file to the head of page.  
 
 To run the demo application use:  
  

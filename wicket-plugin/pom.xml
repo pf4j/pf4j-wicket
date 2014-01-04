@@ -17,7 +17,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <wicket.version>6.8.0</wicket.version>
-        <slf4j.version>1.6.4</slf4j.version>
         <pf4j.version>0.6</pf4j.version>
     </properties>   
 
@@ -34,26 +33,16 @@
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-core</artifactId>
             <version>${wicket.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency> 
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-extensions</artifactId>
             <version>${wicket.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency> 
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-ioc</artifactId>
             <version>${wicket.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Inject annotation -->
-        <dependency> 
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
         </dependency>
         
         <!-- Servlet -->
@@ -62,26 +51,7 @@
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
             <scope>provided</scope>        
-        </dependency>
-        
-        <!-- Logs -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
+        </dependency>        
     </dependencies>
     
 </project>
