@@ -2,18 +2,21 @@ Plugin framework for Wicket
 =====================
 
 A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
+This framework is lightweight (around 10KB) with minimal dependencies (only pf4j).  
+In the demo application you can see two plugins: one that contributes with some JavaScript files to the head of page and the second that contributes with a Css file to the head of page.
+The beauty of this framework is that you can start with a monolithic application and as the application grows in complexity you can split the code (without modifications) in multiple plugins.  
+First create a package for each future plugin in your monolithic application. After this move each package in a plugin structure. You can play in each plugin with PackageResoure, PackageResourceReference, ... 
+from wicket without be aware that your code is located in a plugin.
 
 Current build status: [![Build Status](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/badge/icon)](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/)
 
 Components
 -------------------
+- **WicketPlugin** is a Plugin that implements IInitializer (hook for init/destroy application).
 - **PluginManagerInitializer** creates the plugin manager and register the created plugin manager in application using MetaDataKey.
-This class load, init, start, stop and destroy plugins (using the plugin manager object). Also this class creates an PluginResourceMapper for 
-each started plugin.
-- **PluginResourceMapper** maps Request to PluginResourceRequestHandler and PluginResourceRequestHandler into Url (plugin/plugin-id/...).
-- **PluginResourceRequestHandler** responds with a PluginResource for each request with URL like plugin/plugin-id/...
-- **PluginResource** extends ResourceStreamResource and returns an UrlResourceStream (if exists a resource in plugin class loader) or a FileResourceStream.
-- **WicketPlugin** is a Plugin that implements IInitializer (hook for init/destroy application). Also each WicketPlugin contains methods for resource handling (getResourceUrl(String name), getResource(String name))
+This class load, init, start, stop and destroy plugins (using the plugin manager object).
+- **PluginComponentInjector** scans the wicket component class for fields annotated by @javax.inject.Inject, 
+looks up extensions of the required type for the given field from the plugin manager, and injects the extensions.
 
 Using Maven
 -------------------
@@ -56,6 +59,14 @@ You can define an extension point in your application using **ExtensionPoint** i
 
 In below code I supply an extension for the `Section` extension point.
 
+    @Extension
+    public static class WelcomeSection extends Section {
+
+    	private static final long serialVersionUID = 1L;
+
+
+    }
+
     public class WelcomePlugin extends WicketPlugin {
 
         private static WelcomePlugin instance;
@@ -73,14 +84,41 @@ In below code I supply an extension for the `Section` extension point.
         @Extension
         public static class WelcomeSection extends SimpleSection {
 
-            public WelcomeSection() {
-        		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getResourceUrl("tab-image.png")));
-            }
+			public WelcomeSection() {
+				super(Model.of("Welcome Plugin"));
+			}
+
+			@Override
+			public ResourceReference getImage() {
+				return new PackageResourceReference(WelcomePlugin.class, "res/datasource.png");
+			}
+
+			@Override
+			public WebMarkupContainer getPanel(String panelId) {
+				return new WelcomePanel(panelId, Model.of("This plugin contributes with a css file to the head of page."));
+			}
 
         }
 
     }
 
+	public class WelcomePanel extends SimplePanel {
+		
+		public WelcomePanel(String id, IModel<String> model) {
+			super(id, model);
+			
+			messageLabel.add(AttributeModifier.append("class", "welcome"));
+		}
+
+		@Override
+		public void renderHead(IHeaderResponse response) {
+			super.renderHead(response);
+			
+			response.render(CssHeaderItem.forReference(new PackageResourceReference(WelcomePanel.class, "res/welcome.css")));
+		}
+
+	}	
+	
 You can use **@Inject** to retrieve all extensions for `Section` extension point (see demo/app/.../HomePage.java).
 
     public class HomePage extends WebPage {
@@ -91,17 +129,20 @@ You can use **@Inject** to retrieve all extensions for `Section` extension point
         public HomePage() {     
             ...
 
-            // add section extensions
-            sections.addAll(sectionExtensions);
+			// add section extensions
+			sections.addAll(sectionExtensions);
 
-            // add tabbed panel to page
-            List<ITab> tabs = new ArrayList<ITab>(sections);
-            add(new ImageTabbedPanel("tabs", tabs));
-        }
+			// add tabbed panel to page
+			add(new ImageTabbedPanel<Section>("tabs", sections));        
+		}
         
     }
 
 Another option (without annotation) to retrieves all extensions for an extension point is **pluginManager.getExtensions(Section.class)**.
+For example:
+	
+	PluginManager pluginManager = Application.get().getMetaData(PluginManagerInitializer.PLUGIN_MANAGER_KEY);
+	List<Section> sectionExtensions = pluginManager.getExtensions(Section.class);
 
 For more information please see the demo sources.
 

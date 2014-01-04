@@ -17,11 +17,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
@@ -44,19 +41,14 @@ public class HomePage extends WebPage {
 
 		// add default/main section
 		ResourceReference imagereReference = new PackageResourceReference(HomePage.class, "dashboard.png");
-		String imageUrl = RequestCycle.get().urlFor(imagereReference, null).toString();
-//		System.out.println("imageUrl = " + imageUrl);
-		IModel<String> imageModel = Model.of(imageUrl);
-		Section defaultSection = new SimpleSection(new Model<String>("first tab"), imageModel);
+		Section defaultSection = new SimpleSection(new Model<String>("Default"), imagereReference);
 		sections.add(defaultSection);
 		
 		// add section extensions
-//		System.out.println("sectionExtensions = " + sectionExtensions);
 		sections.addAll(sectionExtensions);
 
-		List<ITab> tabs = new ArrayList<ITab>();
-		tabs.addAll(sections);
-		add(new ImageTabbedPanel("tabs", tabs));
+        // add tabbed panel to page
+		add(new ImageTabbedPanel<Section>("tabs", sections));
 	}
 	
 }

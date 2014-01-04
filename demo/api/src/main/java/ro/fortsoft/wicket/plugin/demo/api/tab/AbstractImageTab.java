@@ -14,6 +14,7 @@ package ro.fortsoft.wicket.plugin.demo.api.tab;
 
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * @author Decebal Suiu
@@ -26,6 +27,7 @@ public abstract class AbstractImageTab extends AbstractTab implements ImageTab {
 		super(title);		
 	}
 
-	public abstract IModel<String> getImageModel();
+	@Override
+	public abstract ResourceReference getImage();
 	
 }

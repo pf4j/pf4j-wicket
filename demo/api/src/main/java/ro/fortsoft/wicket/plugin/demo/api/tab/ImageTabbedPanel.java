@@ -22,11 +22,11 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 /**
  * @author Decebal Suiu
  */
-public class ImageTabbedPanel extends AjaxTabbedPanel {
+public class ImageTabbedPanel<T extends ITab> extends AjaxTabbedPanel<T> {
 
 	private static final long serialVersionUID = 1L;
 
-	public ImageTabbedPanel(String id, List<ITab> tabs) {
+	public ImageTabbedPanel(String id, List<T> tabs) {
 		super(id, tabs);
 	}
 
@@ -39,7 +39,7 @@ public class ImageTabbedPanel extends AjaxTabbedPanel {
 		ITab currentTab = tabs.get(index);
 		if (currentTab instanceof ImageTab) {
 			ImageTab imageTab = (ImageTab) currentTab;
-			return new ImageTabLink(linkId, imageTab.getImageModel()) {
+			return new ImageTabLink(linkId, imageTab.getImage()) {
 				
 				private static final long serialVersionUID = 1L;
 

@@ -14,7 +14,6 @@ package ro.fortsoft.wicket.plugin;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.IInitializer;
-import org.apache.wicket.request.resource.IResource;
 
 import ro.fortsoft.pf4j.Plugin;
 import ro.fortsoft.pf4j.PluginWrapper;
@@ -36,12 +35,4 @@ public class WicketPlugin extends Plugin implements IInitializer  {
 	public void destroy(Application application) {
 	}
 	
-	public final String getResourceUrl(String name) {
-		return PluginUtils.getPluginResourceUrl(getWrapper(), name);
-	}
-	
-	public final IResource getResource(String name) {
-		return PluginUtils.getPluginResource(getWrapper(), name);
-	}
-
 }

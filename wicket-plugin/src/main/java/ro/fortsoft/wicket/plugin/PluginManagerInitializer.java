@@ -21,7 +21,6 @@ import org.apache.wicket.IInitializer;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.application.CompoundClassResolver;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.request.mapper.CompoundRequestMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +33,7 @@ import ro.fortsoft.pf4j.PluginWrapper;
  */
 public class PluginManagerInitializer implements IInitializer {
 
-	private static final Logger LOG = LoggerFactory.getLogger(PluginManagerInitializer.class);
+	private static final Logger log = LoggerFactory.getLogger(PluginManagerInitializer.class);
 	
 	@SuppressWarnings("serial")
 	public static MetaDataKey<PluginManager> PLUGIN_MANAGER_KEY = new MetaDataKey<PluginManager>() {};
@@ -47,6 +46,7 @@ public class PluginManagerInitializer implements IInitializer {
         if (pluginManager == null) {
         	throw new RuntimeException("Plugin manager cannot be null");
         }
+        log.debug("Created plugin manager {}", pluginManager);
         
         // load plugins        
         pluginManager.loadPlugins();
@@ -60,20 +60,11 @@ public class PluginManagerInitializer implements IInitializer {
 		}
 
 		// start plugins
-        pluginManager.startPlugins();        
-        
-        List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
-        LOG.debug("startedPlugins = " + startedPlugins);        
-        
-        // mount plugin resources for each started plugin
-        CompoundRequestMapper requestMapper = new CompoundRequestMapper();
-        for (PluginWrapper plugin : startedPlugins) {
-        	requestMapper.add(new PluginResourceMapper(plugin));
-        }
-        ((WebApplication) application).mount(requestMapper);
+        pluginManager.startPlugins();                
         
         // set class resolver
         CompoundClassResolver classResolver = new CompoundClassResolver();
+        List<PluginWrapper> startedPlugins = pluginManager.getStartedPlugins();
         for (PluginWrapper plugin : startedPlugins) {
         	classResolver.add(new PluginClassResolver(plugin));
         }
@@ -104,7 +95,7 @@ public class PluginManagerInitializer implements IInitializer {
 
 	protected PluginManager createPluginManager(Application application) {
 		File pluginsDir = getPluginsDir(application); 
-        LOG.debug("pluginsDir = " + pluginsDir);
+        log.debug("Plugins directory is {} ", pluginsDir);
         if (pluginsDir != null) {
             return new DefaultPluginManager(pluginsDir);
         }
@@ -130,4 +121,5 @@ public class PluginManagerInitializer implements IInitializer {
 
 		return new File(pluginsDir);
 	}
+	
 }

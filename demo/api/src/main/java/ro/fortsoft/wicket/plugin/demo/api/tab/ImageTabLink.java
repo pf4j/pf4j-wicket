@@ -13,7 +13,8 @@
 package ro.fortsoft.wicket.plugin.demo.api.tab;
 
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * @author Decebal Suiu
@@ -22,10 +23,10 @@ public abstract class ImageTabLink extends AjaxFallbackLink<String> {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public ImageTabLink(String id, IModel<String> imageModel) {
+	public ImageTabLink(String id, ResourceReference image) {
 		super(id);
 		
-		add(new StaticImage("image", imageModel));
+		add(new Image("image", image));
 	}
 	
 }

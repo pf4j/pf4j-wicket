@@ -12,12 +12,15 @@
  */
 package ro.fortsoft.wicket.plugin.demo.welcome;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 import ro.fortsoft.pf4j.Extension;
 import ro.fortsoft.pf4j.PluginWrapper;
 import ro.fortsoft.wicket.plugin.WicketPlugin;
-import ro.fortsoft.wicket.plugin.demo.api.SimpleSection;
+import ro.fortsoft.wicket.plugin.demo.api.Section;
 
 /**
  * @author Decebal Suiu
@@ -32,10 +35,12 @@ public class WelcomePlugin extends WicketPlugin {
         instance = this;
     }
 
+    @Override
     public void start() {
         System.out.println("WelcomePlugin.start()");
     }
 
+    @Override
     public void stop() {
         System.out.println("WelcomePlugin.stop()");
     }
@@ -45,13 +50,23 @@ public class WelcomePlugin extends WicketPlugin {
     }
     
     @Extension
-    public static class WelcomeSection extends SimpleSection {
+    public static class WelcomeSection extends Section {
 
     	private static final long serialVersionUID = 1L;
 
 		public WelcomeSection() {
-    		super(Model.of("Welcome Plugin"), Model.of(WelcomePlugin.get().getResourceUrl("datasource.png")));
+			super(Model.of("Welcome Plugin"));
     	}
+
+		@Override
+		public ResourceReference getImage() {
+			return new PackageResourceReference(WelcomePlugin.class, "res/datasource.png");
+		}
+
+		@Override
+		public WebMarkupContainer getPanel(String panelId) {
+			return new WelcomePanel(panelId, Model.of("This plugin contributes with a css file to the head of page."));
+		}
 
     }
 

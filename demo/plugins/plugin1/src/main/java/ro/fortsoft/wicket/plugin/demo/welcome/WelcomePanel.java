@@ -10,35 +10,34 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package ro.fortsoft.wicket.plugin.demo.api;
+package ro.fortsoft.wicket.plugin.demo.welcome;
 
-import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.request.resource.ResourceReference;
+import org.apache.wicket.request.resource.PackageResourceReference;
+
+import ro.fortsoft.wicket.plugin.demo.api.SimplePanel;
 
 /**
  * @author Decebal Suiu
  */
-public class SimpleSection extends Section {
+public class WelcomePanel extends SimplePanel {
 
 	private static final long serialVersionUID = 1L;
-
-	protected ResourceReference image;
 	
-	public SimpleSection(IModel<String> title, ResourceReference image) {
-		super(title);
+	public WelcomePanel(String id, IModel<String> model) {
+		super(id, model);
 		
-		this.image = image;
-	}
-	
-	@Override
-	public ResourceReference getImage() {
-		return image;
+		messageLabel.add(AttributeModifier.append("class", "welcome"));
 	}
 
 	@Override
-	public WebMarkupContainer getPanel(String panelId) {
-		return new SimplePanel(panelId, getTitle());
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		
+		response.render(CssHeaderItem.forReference(new PackageResourceReference(WelcomePanel.class, "res/welcome.css")));
 	}
-	
+
 }

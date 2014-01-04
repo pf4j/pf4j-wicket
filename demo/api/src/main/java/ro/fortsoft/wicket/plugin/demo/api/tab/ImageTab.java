@@ -13,13 +13,13 @@
 package ro.fortsoft.wicket.plugin.demo.api.tab;
 
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * @author Decebal Suiu
  */
 public interface ImageTab extends ITab {
 
-	public IModel<String> getImageModel();
+	public ResourceReference getImage();
 
 }
