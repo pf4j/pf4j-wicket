@@ -4,12 +4,12 @@
     <parent>
         <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
         <artifactId>wicket-plugin-demo-parent</artifactId>
-        <version>0.4-SNAPSHOT</version>
+        <version>0.4</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wicket-plugin-demo-api</artifactId>
-    <version>0.4-SNAPSHOT</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
     <name>Demo Api</name>
 
