@@ -12,9 +12,12 @@
  */
 package ro.fortsoft.wicket.plugin.demo;
 
+import java.io.File;
+
 import org.apache.wicket.protocol.http.WebApplication;
 
 import ro.fortsoft.pf4j.PluginManager;
+import ro.fortsoft.wicket.plugin.PluginManagerFactory;
 import ro.fortsoft.wicket.plugin.PluginManagerInitializer;
 
 /**
@@ -25,7 +28,7 @@ import ro.fortsoft.wicket.plugin.PluginManagerInitializer;
  * 
  * @author Decebal Suiu
  */
-public class WicketApplication extends WebApplication {
+public class WicketApplication extends WebApplication /*implements PluginManagerFactory*/ {
 	
 	public static WicketApplication get() {
 		return (WicketApplication) WebApplication.get();
@@ -40,7 +43,7 @@ public class WicketApplication extends WebApplication {
 		getMarkupSettings().setDefaultMarkupEncoding("UTF-8");
 		
 		// exception settings
-		getResourceSettings().setThrowExceptionOnMissingResource(false);		
+		getResourceSettings().setThrowExceptionOnMissingResource(false);
 	}
 
 	@Override
@@ -51,5 +54,12 @@ public class WicketApplication extends WebApplication {
 	public PluginManager getPluginManager() {
 		return getMetaData(PluginManagerInitializer.PLUGIN_MANAGER_KEY);
 	}
+
+	/*
+	@Override
+	public PluginManager createPluginManager(File pluginsDir) {
+		return new CustomPluginManager(pluginsDir);
+	}
+	*/
 
 }

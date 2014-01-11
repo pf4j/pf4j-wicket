@@ -19,6 +19,7 @@ import java.util.List;
 import org.apache.wicket.Application;
 import org.apache.wicket.IInitializer;
 import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.application.CompoundClassResolver;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.slf4j.Logger;
@@ -44,8 +45,9 @@ public class PluginManagerInitializer implements IInitializer {
 	public void init(Application application) {
 		pluginManager = createPluginManager(application);
         if (pluginManager == null) {
-        	throw new RuntimeException("Plugin manager cannot be null");
+        	throw new WicketRuntimeException("Plugin manager cannot be null");
         }
+        
         log.debug("Created plugin manager {}", pluginManager);
         
         // load plugins        
@@ -93,18 +95,26 @@ public class PluginManagerInitializer implements IInitializer {
 		}		
 	}
 
-	protected PluginManager createPluginManager(Application application) {
+	private PluginManager createPluginManager(Application application) {        
 		File pluginsDir = getPluginsDir(application); 
-        log.debug("Plugins directory is {} ", pluginsDir);
-        if (pluginsDir != null) {
-            return new DefaultPluginManager(pluginsDir);
+        log.debug("Plugins directory is {} ", pluginsDir);        
+        
+        // TODO check more locations for PluginManagerFactory similar with getPluginsDir();
+        // now I checked only Application if it implements PluginManagerFactory ?!
+        PluginManager pluginManager;
+        if (application instanceof PluginManagerFactory) {
+    		log.debug("Create custom plugin manager");
+        	pluginManager = ((PluginManagerFactory) application).createPluginManager(pluginsDir); 
+        } else {
+    		log.debug("Create default plugin manager");
+        	pluginManager = new DefaultPluginManager(pluginsDir);
         }
-
-		return null; 
+        
+        return pluginManager;
 	}
 
-	protected File getPluginsDir(Application application) {
-		String pluginsDir = System.getProperty("wicket.pluginsDir");
+	private File getPluginsDir(Application application) {
+		String pluginsDir = System.getProperty("pf4j.pluginsDir");
 		
 		// if no system parameter check filter/servlet <init-param> and <context-param>
 		if (pluginsDir == null) {
@@ -116,7 +126,7 @@ public class PluginManagerInitializer implements IInitializer {
 		}
 		
 		if (pluginsDir == null) {
-			pluginsDir = "plugins";
+   			pluginsDir = DefaultPluginManager.DEFAULT_PLUGINS_DIRECTORY;
 		}
 
 		return new File(pluginsDir);

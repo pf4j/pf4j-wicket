@@ -44,7 +44,7 @@ The main challenge for you to transform a monolithic wicket application in a mod
 to write extensions for these extension point in your plugins.
 
 The plugins are stored in a folder. You can specify the plugins folder in many way:
-- set `wicket.pluginsDir` system property
+- set `pf4j.pluginsDir` system property
 - servlet \<context-param> with name `pluginsDir` (in your web.xml file)
 - filter \<init-param> with name `pluginsDir` (in your web.xml file)   
 
@@ -138,6 +138,8 @@ For example:
 	
 	PluginManager pluginManager = Application.get().getMetaData(PluginManagerInitializer.PLUGIN_MANAGER_KEY);
 	List<Section> sectionExtensions = pluginManager.getExtensions(Section.class);
+
+If you want to supply a custom PluginManager than your Application must implements PluginManagerFactory.
 
 For more information please see the demo sources.
 
