@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <parent>
         <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
         <artifactId>wicket-plugin-demo-parent</artifactId>
-        <version>0.5-SNAPSHOT</version>
+        <version>0.5.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wicket-plugin-demo-app</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.5.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Demo App</name>
-    
+
     <properties>
         <slf4j.version>1.6.4</slf4j.version>
         <jetty.version>7.5.0.v20110901</jetty.version>
     </properties>
-    
+
     <build>
-        <plugins>                        
+        <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -33,7 +33,7 @@
                     </connectors>
                 </configuration>
             </plugin>
-        
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -42,7 +42,7 @@
                     <warName>wicket-plugin-demo</warName>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
@@ -60,19 +60,19 @@
             <version>${jetty.version}</version>
             <scope>provided</scope>
         </dependency>
-                
+
 		<!-- Plugins -->
         <dependency>
             <groupId>ro.fortsoft.wicket.plugin</groupId>
             <artifactId>wicket-plugin</artifactId>
             <version>${project.version}</version>
-        </dependency>    
+        </dependency>
         <dependency>
             <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
             <artifactId>wicket-plugin-demo-api</artifactId>
             <version>${project.version}</version>
-        </dependency>  
-		
+        </dependency>
+
 	    <!-- Logs -->
         <dependency>
             <groupId>log4j</groupId>
@@ -86,5 +86,5 @@
             <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
-    
+
 </project>
