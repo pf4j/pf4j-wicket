@@ -61,7 +61,7 @@ public class HelloPanel extends SimplePanel {
 		StringBuilder javaScript = new StringBuilder();
 		javaScript.append("var g = new JustGage({");
 		javaScript.append("id: 'gauge',");
-		javaScript.append("value: 67,");
+		javaScript.append("value: " + Math.floor((Math.random() * 100) + 1) + ",");
 		javaScript.append("min: 0,");
 		javaScript.append("max: 100,");
 		javaScript.append("title: 'Visitors'");
