@@ -1,13 +1,14 @@
 Plugin framework for Wicket
 =====================
 
-A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
+[![Travis CI Build Status](https://travis-ci.org/decebals/wicket-plugin.png)](https://travis-ci.org/decebals/wicket-plugin)
+[![Maven Central](http://img.shields.io/maven-central/v/ro.fortsoft.wicket.plugin/wicket-plugin.svg)](http://search.maven.org/#search|ga|1|wicket-plugin)
 
-Current build status: [![Build Status](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/badge/icon)](https://buildhive.cloudbees.com/job/decebals/job/wicket-plugin/)
+A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
 
 Features/Benefits
 -------------------
-This framework is lightweight (around 10KB) with minimal dependencies (only pf4j).  
+This framework is lightweight (around 10KB) with minimal dependencies (only PF4J).  
 
 The beauty of this framework is that you can start with a monolithic application and as the application grows in complexity you can split the code (without modifications) in multiple plugins.  
 First create a package for each future plugin in your monolithic application. After this move each package in a plugin structure. You can play in each plugin with PackageResoure, PackageResourceReference, ... 
