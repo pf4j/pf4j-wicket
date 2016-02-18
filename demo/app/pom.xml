@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <parent>
         <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
         <artifactId>wicket-plugin-demo-parent</artifactId>
@@ -12,28 +12,32 @@
     <version>0.5-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Demo App</name>
-    
+
     <properties>
         <slf4j.version>1.6.4</slf4j.version>
-        <jetty.version>7.5.0.v20110901</jetty.version>
+        <jetty.version>9.2.0.v20140526</jetty.version>
     </properties>
-    
+
     <build>
-        <plugins>                        
+        <plugins>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>8081</port>
-                            <maxIdleTime>3600000</maxIdleTime>
-                        </connector>
-                    </connectors>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>jetty.port</name>
+                            <value>8081</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>maven.project.build.directory.test-classes</name>
+                            <value>${project.build.directory}/test-classes</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
             </plugin>
-        
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -42,9 +46,11 @@
                     <warName>wicket-plugin-demo</warName>
                 </configuration>
             </plugin>
-            
+
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
@@ -55,24 +61,47 @@
     <dependencies>
         <!-- JETTY DEPENDENCIES FOR TESTING -->
         <dependency>
-            <groupId>org.eclipse.jetty.aggregate</groupId>
-            <artifactId>jetty-all-server</artifactId>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
             <version>${jetty.version}</version>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
-                
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>${jetty.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-jmx</artifactId>
+            <version>${jetty.version}</version>
+            <scope>test</scope>
+        </dependency>
+        -->
+
 		<!-- Plugins -->
         <dependency>
             <groupId>ro.fortsoft.wicket.plugin</groupId>
             <artifactId>wicket-plugin</artifactId>
             <version>${project.version}</version>
-        </dependency>    
+        </dependency>
         <dependency>
             <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
             <artifactId>wicket-plugin-demo-api</artifactId>
             <version>${project.version}</version>
-        </dependency>  
-		
+        </dependency>
+
 	    <!-- Logs -->
         <dependency>
             <groupId>log4j</groupId>
@@ -86,5 +115,5 @@
             <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
-    
+
 </project>

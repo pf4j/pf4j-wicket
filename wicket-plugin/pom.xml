@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <parent>
         <groupId>ro.fortsoft.wicket.plugin</groupId>
         <artifactId>wicket-plugin-parent</artifactId>
@@ -13,12 +13,12 @@
     <packaging>jar</packaging>
     <name>Wicket Plugin</name>
     <description>Simple plugin system for Apache Wicket</description>
-        
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <wicket.version>6.8.0</wicket.version>
-        <pf4j.version>0.6</pf4j.version>
-    </properties>   
+        <wicket.version>7.2.0</wicket.version>
+        <pf4j.version>0.12.0</pf4j.version>
+    </properties>
 
     <dependencies>
         <!--  PF4J -->
@@ -34,24 +34,24 @@
             <artifactId>wicket-core</artifactId>
             <version>${wicket.version}</version>
         </dependency>
-        <dependency> 
+        <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-extensions</artifactId>
             <version>${wicket.version}</version>
         </dependency>
-        <dependency> 
+        <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-ioc</artifactId>
             <version>${wicket.version}</version>
         </dependency>
-        
+
         <!-- Servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>        
-        </dependency>        
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
-    
+
 </project>
