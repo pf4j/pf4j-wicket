@@ -2,20 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
+        <groupId>org.pf4j.demo</groupId>
         <artifactId>wicket-plugin-demo-plugins</artifactId>
-        <version>0.6.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wicket-plugin-demo-plugin1</artifactId>
-    <version>0.6.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Demo Plugin #1</name>
 
     <properties>
         <plugin.id>welcome-plugin</plugin.id>
-        <plugin.class>ro.fortsoft.wicket.plugin.demo.welcome.WelcomePlugin</plugin.class>
+        <plugin.class>org.pf4j.wicket.demo.welcome.WelcomePlugin</plugin.class>
         <plugin.version>0.0.1</plugin.version>
         <plugin.provider>Decebal Suiu</plugin.provider>
         <plugin.dependencies />
@@ -23,27 +23,6 @@
 
     <build>
         <plugins>
-            <!-- DOESN'T WORK WITH MAVEN 3 (I defined the plugin metadata in properties section)
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0-alpha-2</version>
-                <executions>
-                  <execution>
-                    <phase>initialize</phase>
-                    <goals>
-                      <goal>read-project-properties</goal>
-                    </goals>
-                    <configuration>
-                      <files>
-                        <file>plugin.properties</file>
-                      </files>
-                    </configuration>
-                  </execution>
-                </executions>
-            </plugin>
-            -->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>

@@ -12,7 +12,7 @@
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
         <init-param>
             <param-name>applicationClassName</param-name>
-            <param-value>ro.fortsoft.wicket.plugin.demo.WicketApplication</param-value>
+            <param-value>org.pf4j.wicket.demo.WicketApplication</param-value>
         </init-param>
     </filter>
 
