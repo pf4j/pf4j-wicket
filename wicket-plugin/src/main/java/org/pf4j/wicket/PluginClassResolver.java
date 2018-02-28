@@ -16,17 +16,18 @@
 package org.pf4j.wicket;
 
 import org.apache.wicket.application.AbstractClassResolver;
-import ro.fortsoft.pf4j.PluginWrapper;
+import org.pf4j.PluginClassLoader;
+import org.pf4j.PluginWrapper;
 
 /**
- * This resolver uses the PLuginclassLoader to resolve any classes that
+ * This resolver uses the {@link PluginClassLoader} to resolve any classes that
  * cannot directly be loaded by the Wicket classloader.
  *
  * @author Decebal Suiu
  */
 public class PluginClassResolver extends AbstractClassResolver {
 
-	private PluginWrapper plugin;
+	private final PluginWrapper plugin;
 
 	public PluginClassResolver(PluginWrapper plugin) {
 		this.plugin = plugin;

@@ -15,9 +15,9 @@
  */
 package org.pf4j.wicket;
 
-import ro.fortsoft.pf4j.PluginManager;
+import org.pf4j.PluginManager;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /**
  * Factory class to create {@link PluginManager}.
@@ -27,6 +27,6 @@ import java.io.File;
  */
 public interface PluginManagerFactory {
 
-	public PluginManager createPluginManager(File pluginsDir);
+	PluginManager createPluginManager(Path pluginsDir);
 
 }

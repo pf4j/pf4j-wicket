@@ -19,10 +19,10 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
+import org.pf4j.Extension;
+import org.pf4j.PluginWrapper;
 import org.pf4j.wicket.WicketPlugin;
 import org.pf4j.wicket.demo.api.Section;
-import ro.fortsoft.pf4j.Extension;
-import ro.fortsoft.pf4j.PluginWrapper;
 
 /**
  * A very simple plugin.

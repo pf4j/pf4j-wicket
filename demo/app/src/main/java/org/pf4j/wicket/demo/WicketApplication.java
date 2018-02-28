@@ -16,8 +16,10 @@
 package org.pf4j.wicket.demo;
 
 import org.apache.wicket.protocol.http.WebApplication;
+import org.pf4j.PluginManager;
 import org.pf4j.wicket.PluginManagerInitializer;
-import ro.fortsoft.pf4j.PluginManager;
+
+import java.nio.file.Path;
 
 /**
  * Application object for your web application. If you want to run this
@@ -50,13 +52,14 @@ public class WicketApplication extends WebApplication /*implements PluginManager
 		return HomePage.class;
 	}
 
+	// helper to access the plugin manager via WicketApplication.get().getPluginManager()
 	public PluginManager getPluginManager() {
 		return getMetaData(PluginManagerInitializer.PLUGIN_MANAGER_KEY);
 	}
 
 	/*
 	@Override
-	public PluginManager createPluginManager(File pluginsDir) {
+	public PluginManager createPluginManager(Path pluginsDir) {
 		return new CustomPluginManager(pluginsDir);
 	}
 	*/

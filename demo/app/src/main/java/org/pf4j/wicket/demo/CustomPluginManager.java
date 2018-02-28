@@ -15,17 +15,17 @@
  */
 package org.pf4j.wicket.demo;
 
-import ro.fortsoft.pf4j.DefaultPluginManager;
+import org.pf4j.DefaultPluginManager;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /**
  * @author Decebal Suiu
  */
 public class CustomPluginManager extends DefaultPluginManager {
 
-	public CustomPluginManager(File pluginsDirectory) {
-		super(pluginsDirectory);
+	public CustomPluginManager(Path pluginsDir) {
+		super(pluginsDir);
 	}
 
 }

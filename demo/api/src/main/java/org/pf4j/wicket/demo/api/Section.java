@@ -16,8 +16,8 @@
 package org.pf4j.wicket.demo.api;
 
 import org.apache.wicket.model.IModel;
+import org.pf4j.ExtensionPoint;
 import org.pf4j.wicket.demo.api.tab.AbstractImageTab;
-import ro.fortsoft.pf4j.ExtensionPoint;
 
 /**
  * @author Decebal Suiu

@@ -16,7 +16,7 @@
 package org.pf4j.wicket;
 
 import org.apache.wicket.injection.IFieldValueFactory;
-import ro.fortsoft.pf4j.PluginManager;
+import org.pf4j.PluginManager;
 
 import javax.inject.Inject;
 import java.lang.reflect.Field;

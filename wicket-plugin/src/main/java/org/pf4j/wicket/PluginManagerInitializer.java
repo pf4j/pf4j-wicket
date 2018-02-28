@@ -22,12 +22,11 @@ import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.application.CompoundClassResolver;
 import org.apache.wicket.application.DefaultClassResolver;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.pf4j.DefaultPluginManager;
+import org.pf4j.PluginManager;
+import org.pf4j.PluginWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ro.fortsoft.pf4j.DefaultPluginManager;
-import ro.fortsoft.pf4j.PluginManager;
-import ro.fortsoft.pf4j.PluginWrapper;
-import ro.fortsoft.pf4j.RuntimeMode;
 
 import java.io.File;
 import java.util.Collections;
@@ -109,10 +108,10 @@ public class PluginManagerInitializer implements IInitializer {
         PluginManager pluginManager;
         if (application instanceof PluginManagerFactory) {
     		log.debug("Create custom plugin manager");
-        	pluginManager = ((PluginManagerFactory) application).createPluginManager(pluginsDir);
+        	pluginManager = ((PluginManagerFactory) application).createPluginManager(pluginsDir.toPath());
         } else {
     		log.debug("Create default plugin manager");
-        	pluginManager = new DefaultPluginManager(pluginsDir);
+        	pluginManager = pluginsDir != null ? new DefaultPluginManager(pluginsDir.toPath()) : new DefaultPluginManager();
         }
 
         return pluginManager;
@@ -130,20 +129,7 @@ public class PluginManagerInitializer implements IInitializer {
 			pluginsDir = ((WebApplication) application).getServletContext().getInitParameter("pluginsDir");
 		}
 
-		if (pluginsDir == null) {
-            // TODO: improve ?!
-//   			pluginsDir = DefaultPluginManager.DEFAULT_PLUGINS_DIRECTORY;
-            // retrieves the runtime mode from system
-            String modeAsString = System.getProperty("pf4j.mode", RuntimeMode.DEPLOYMENT.toString());
-            RuntimeMode runtimeMode = RuntimeMode.byName(modeAsString);
-            if (RuntimeMode.DEVELOPMENT.equals(runtimeMode)) {
-                pluginsDir = DefaultPluginManager.DEVELOPMENT_PLUGINS_DIRECTORY;
-            } else {
-                pluginsDir = DefaultPluginManager.DEFAULT_PLUGINS_DIRECTORY;
-            }
-        }
-
-		return new File(pluginsDir);
+		return pluginsDir != null ? new File(pluginsDir) : null;
 	}
 
 }
