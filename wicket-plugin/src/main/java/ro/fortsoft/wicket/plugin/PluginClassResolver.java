@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin;
+package org.pf4j.wicket.plugin;
 
 import org.apache.wicket.application.AbstractClassResolver;
-import ro.fortsoft.pf4j.PluginWrapper;
+import org.pf4j.PluginWrapper;
 
 /**
  * This resolver uses the PLuginclassLoader to resolve any classes that

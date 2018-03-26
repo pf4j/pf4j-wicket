@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin.demo.api;
+package org.pf4j.wicket.plugin.demo.api;
 
 import org.apache.wicket.model.IModel;
-import ro.fortsoft.pf4j.ExtensionPoint;
-import ro.fortsoft.wicket.plugin.demo.api.tab.AbstractImageTab;
+import org.pf4j.ExtensionPoint;
+import org.pf4j.wicket.plugin.demo.api.tab.AbstractImageTab;
 
 /**
  * @author Decebal Suiu

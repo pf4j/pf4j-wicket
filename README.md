@@ -2,7 +2,7 @@ Plugin framework for Wicket
 =====================
 
 [![Travis CI Build Status](https://travis-ci.org/decebals/wicket-plugin.png)](https://travis-ci.org/decebals/wicket-plugin)
-[![Maven Central](http://img.shields.io/maven-central/v/ro.fortsoft.wicket.plugin/wicket-plugin.svg)](http://search.maven.org/#search|ga|1|wicket-plugin)
+[![Maven Central](http://img.shields.io/maven-central/v/org.pf4j.wicket.plugin/wicket-plugin.svg)](http://search.maven.org/#search|ga|1|wicket-plugin)
 
 A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
 
@@ -28,7 +28,7 @@ In your pom.xml you must define the dependencies to wicket plugin artifacts with
 
 ```xml
 <dependency>
-    <groupId>ro.fortsoft.wicket.plugin</groupId>
+    <groupId>org.pf4j.wicket.plugin</groupId>
     <artifactId>wicket-plugin</artifactId>
     <version>${wicket-plugin.version}</version>
 </dependency>

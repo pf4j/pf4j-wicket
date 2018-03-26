@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin;
+package org.pf4j.wicket.plugin;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.IInitializer;
@@ -24,10 +24,10 @@ import org.apache.wicket.application.DefaultClassResolver;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ro.fortsoft.pf4j.DefaultPluginManager;
-import ro.fortsoft.pf4j.PluginManager;
-import ro.fortsoft.pf4j.PluginWrapper;
-import ro.fortsoft.pf4j.RuntimeMode;
+import org.pf4j.DefaultPluginManager;
+import org.pf4j.PluginManager;
+import org.pf4j.PluginWrapper;
+import org.pf4j.RuntimeMode;
 
 import java.io.File;
 import java.util.Collections;

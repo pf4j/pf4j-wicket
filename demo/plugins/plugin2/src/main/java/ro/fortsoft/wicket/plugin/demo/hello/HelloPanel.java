@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin.demo.hello;
+package org.pf4j.wicket.plugin.demo.hello;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
@@ -21,7 +21,7 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
-import ro.fortsoft.wicket.plugin.demo.api.SimplePanel;
+import org.pf4j.wicket.plugin.demo.api.SimplePanel;
 
 /**
  * @author Decebal Suiu

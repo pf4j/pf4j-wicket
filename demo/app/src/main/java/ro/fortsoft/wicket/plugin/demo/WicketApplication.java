@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin.demo;
+package org.pf4j.wicket.plugin.demo;
 
 import org.apache.wicket.protocol.http.WebApplication;
-import ro.fortsoft.pf4j.PluginManager;
-import ro.fortsoft.wicket.plugin.PluginManagerInitializer;
+import org.pf4j.PluginManager;
+import org.pf4j.wicket.plugin.PluginManagerInitializer;
 
 /**
  * Application object for your web application. If you want to run this
  * application without deploying, run the Start class.
  *
- * @see ro.fortsoft.wicket.plugin.demo.Start#main(String[])
+ * @see org.pf4j.wicket.plugin.demo.Start#main(String[])
  *
  * @author Decebal Suiu
  */

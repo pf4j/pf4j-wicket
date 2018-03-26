@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin;
+package org.pf4j.wicket.plugin;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.IInitializer;
-import ro.fortsoft.pf4j.Plugin;
-import ro.fortsoft.pf4j.PluginWrapper;
+import org.pf4j.Plugin;
+import org.pf4j.PluginWrapper;
 
 /**
  * @author Decebal Suiu

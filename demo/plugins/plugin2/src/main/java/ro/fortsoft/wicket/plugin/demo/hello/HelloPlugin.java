@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin.demo.hello;
+package org.pf4j.wicket.plugin.demo.hello;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
-import ro.fortsoft.pf4j.Extension;
-import ro.fortsoft.pf4j.PluginWrapper;
-import ro.fortsoft.wicket.plugin.WicketPlugin;
-import ro.fortsoft.wicket.plugin.demo.api.Section;
+import org.pf4j.Extension;
+import org.pf4j.PluginWrapper;
+import org.pf4j.wicket.plugin.WicketPlugin;
+import org.pf4j.wicket.plugin.demo.api.Section;
 
 /**
  * A very simple plugin.

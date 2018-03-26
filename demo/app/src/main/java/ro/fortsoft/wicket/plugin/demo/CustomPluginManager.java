@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin.demo;
+package org.pf4j.wicket.plugin.demo;
 
-import ro.fortsoft.pf4j.DefaultPluginManager;
+import org.pf4j.DefaultPluginManager;
 
 import java.io.File;
 

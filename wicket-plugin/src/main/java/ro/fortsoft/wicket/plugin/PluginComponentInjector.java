@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ro.fortsoft.wicket.plugin;
+package org.pf4j.wicket.plugin;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.application.IComponentInstantiationListener;
 import org.apache.wicket.injection.IFieldValueFactory;
 import org.apache.wicket.injection.Injector;
-import ro.fortsoft.pf4j.PluginManager;
+import org.pf4j.PluginManager;
 
 /**
  * The injector scans the component class for fields annotated by @javax.inject.Inject,
