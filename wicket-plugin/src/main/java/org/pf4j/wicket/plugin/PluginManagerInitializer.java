@@ -30,6 +30,7 @@ import org.pf4j.PluginWrapper;
 import org.pf4j.RuntimeMode;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
@@ -132,16 +133,10 @@ public class PluginManagerInitializer implements IInitializer {
 
 		if (pluginsDir == null) {
             // TODO: improve ?!
-//   			pluginsDir = DefaultPluginManager.DEFAULT_PLUGINS_DIRECTORY;
-            // retrieves the runtime mode from system
-            String modeAsString = System.getProperty("pf4j.mode", RuntimeMode.DEPLOYMENT.toString());
-            RuntimeMode runtimeMode = RuntimeMode.byName(modeAsString);
-            if (RuntimeMode.DEVELOPMENT.equals(runtimeMode)) {
-                pluginsDir = DefaultPluginManager.DEVELOPMENT_PLUGINS_DIRECTORY;
-            } else {
-                pluginsDir = DefaultPluginManager.DEFAULT_PLUGINS_DIRECTORY;
-            }
-        }
+                    DefaultPluginManager m = new DefaultPluginManager();
+                    Path p = m.getPluginsRoot();
+                    return p.toFile();
+                }
 
 		return new File(pluginsDir);
 	}
