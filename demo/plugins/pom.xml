@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
-        <artifactId>wicket-plugin-demo-parent</artifactId>
+        <groupId>org.pf4j.wicket.plugin.demo</groupId>
+        <artifactId>pf4j-wicket-demo-parent</artifactId>
         <version>0.6.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>wicket-plugin-demo-plugins</artifactId>
+    <artifactId>pf4j-wicket-demo-plugins</artifactId>
     <version>0.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Demo Plugins Parent</name>
@@ -88,14 +88,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>ro.fortsoft.wicket.plugin</groupId>
-            <artifactId>wicket-plugin</artifactId>
+            <groupId>org.pf4j.wicket.plugin</groupId>
+            <artifactId>pf4j-wicket</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>ro.fortsoft.wicket.plugin.demo</groupId>
-            <artifactId>wicket-plugin-demo-api</artifactId>
+            <groupId>org.pf4j.wicket.plugin.demo</groupId>
+            <artifactId>pf4j-wicket-demo-api</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
