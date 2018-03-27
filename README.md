@@ -1,4 +1,4 @@
-# PF4J Wicket, A Plugin framework for Wicket
+# PF4J Wicket, a plugin framework for Wicket
 
 
 [![Travis CI Build Status](https://travis-ci.org/pf4j/pf4j-wicket.png)](https://travis-ci.org/pf4j/pf4j-wicket)
