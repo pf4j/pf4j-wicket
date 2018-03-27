@@ -1,17 +1,17 @@
 # PF4J Wicket, A Plugin framework for Wicket
 
 
-[![Travis CI Build Status](https://travis-ci.org/pf4j/wicket-plugin.png)](https://travis-ci.org/pf4j/wicket-plugin)
-[![Maven Central](http://img.shields.io/maven-central/v/org.pf4j/wicket-plugin.svg)](http://search.maven.org/#search|ga|1|wicket-plugin)
+[![Travis CI Build Status](https://travis-ci.org/pf4j/pf4j-wicket.png)](https://travis-ci.org/pf4j/pf4j-wicket)
+[![Maven Central](http://img.shields.io/maven-central/v/org.pf4j/pf4j-wicket.svg)](http://search.maven.org/#search|ga|1|pf4j-wicket)
 
-A simple plugin framework for wicket based on [PF4J] (https://github.com/pf4j/pf4j). You can view pf4j-wicket as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
+A simple plugin framework for wicket based on [PF4J](https://github.com/pf4j/pf4j). You can view pf4j-wicket as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
 
 Features/Benefits
 -------------------
 This framework is lightweight (around 10KB) with minimal dependencies (only PF4J).  
 
 The beauty of this framework is that you can start with a monolithic application and as the application grows in complexity you can split the code (without modifications) in multiple plugins.  
-First create a package for each future plugin in your monolithic application. After this move each package in a plugin structure. You can play in each plugin with PackageResoure, PackageResourceReference, ... 
+First create a package for each future plugin in your monolithic application. After this move each package in a plugin structure. You can play in each plugin with `PackageResoure`, `PackageResourceReference`, ... 
 from wicket without be aware that your code is located in a plugin.
 
 Components
@@ -176,7 +176,7 @@ Much of the conversation between developers and users is managed through [mailin
 
 Versioning
 ------------
-PF4J Wicket Plugin will be maintained under the Semantic Versioning guidelines as much as possible.
+PF4J Wicket will be maintained under the Semantic Versioning guidelines as much as possible.
 
 Releases will be numbered with the follow format:
 
@@ -189,16 +189,3 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bump the patch
 
 For more information on SemVer, please visit http://semver.org/.
-
-License
---------------
-Copyright (C) 2012-present the original author or authors.
- 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with
-the License. You may obtain a copy of the License in the LICENSE file, or at:
- 
-http://www.apache.org/licenses/LICENSE-2.0
- 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
-an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
-specific language governing permissions and limitations under the License.
