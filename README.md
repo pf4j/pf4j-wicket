@@ -1,4 +1,4 @@
-# PF4J - Wicket integration
+PF4J - Wicket integration
 =====================
 [![Travis CI Build Status](https://travis-ci.org/pf4j/pf4j-wicket.png)](https://travis-ci.org/pf4j/pf4j-wicket)
 [![Maven Central](http://img.shields.io/maven-central/v/org.pf4j/pf4j-wicket.svg)](http://search.maven.org/#search|ga|1|pf4j-wicket)
