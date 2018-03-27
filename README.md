@@ -1,7 +1,7 @@
 Plugin framework for Wicket
 =====================
 
-[![Travis CI Build Status](https://travis-ci.org/decebals/wicket-plugin.png)](https://travis-ci.org/decebals/wicket-plugin)
+[![Travis CI Build Status](https://travis-ci.org/pf4j/wicket-plugin.png)](https://travis-ci.org/pf4j/wicket-plugin)
 [![Maven Central](http://img.shields.io/maven-central/v/org.pf4j/wicket-plugin.svg)](http://search.maven.org/#search|ga|1|wicket-plugin)
 
 A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
@@ -53,92 +53,100 @@ The default value for plugins folder is 'plugins'.
 
 You can define an extension point in your application using **ExtensionPoint** interface marker.
 
-    public abstract class Section extends AbstractImageTab implements ExtensionPoint {
+```java
+public abstract class Section extends AbstractImageTab implements ExtensionPoint {
 
-        public Section(IModel<String> title) {
-            super(title);
-        }
-
+    public Section(IModel<String> title) {
+        super(title);
     }
+
+}
+```
 
 In below code I supply an extension for the `Section` extension point.
 
-    public class WelcomePlugin extends WicketPlugin {
+```java
+public class WelcomePlugin extends WicketPlugin {
 
-        private static WelcomePlugin instance;
+    private static WelcomePlugin instance;
+    
+    public WelcomePlugin(PluginWrapper wrapper) {
+        super(wrapper);
         
-        public WelcomePlugin(PluginWrapper wrapper) {
-            super(wrapper);
-            
-            instance = this;
+        instance = this;
+    }
+
+    public static WelcomePlugin get() { // for a quick access to this plugin (it's optional)
+        return instance;
+    }
+    
+    @Extension
+    public static class WelcomeSection extends SimpleSection {
+
+        public WelcomeSection() {
+            super(Model.of("Welcome Plugin"));
         }
 
-        public static WelcomePlugin get() { // for a quick access to this plugin (it's optional)
-            return instance;
+        @Override
+        public ResourceReference getImage() {
+            return new PackageResourceReference(WelcomePlugin.class, "res/datasource.png");
         }
-        
-        @Extension
-        public static class WelcomeSection extends SimpleSection {
 
-			public WelcomeSection() {
-				super(Model.of("Welcome Plugin"));
-			}
-
-			@Override
-			public ResourceReference getImage() {
-				return new PackageResourceReference(WelcomePlugin.class, "res/datasource.png");
-			}
-
-			@Override
-			public WebMarkupContainer getPanel(String panelId) {
-				return new WelcomePanel(panelId, Model.of("This plugin contributes with a css file to the head of page."));
-			}
-
+        @Override
+        public WebMarkupContainer getPanel(String panelId) {
+            return new WelcomePanel(panelId, Model.of("This plugin contributes with a css file to the head of page."));
         }
 
     }
 
-	public class WelcomePanel extends SimplePanel {
-		
-		public WelcomePanel(String id, IModel<String> model) {
-			super(id, model);
-			
-			messageLabel.add(AttributeModifier.append("class", "welcome"));
-		}
+}
 
-		@Override
-		public void renderHead(IHeaderResponse response) {
-			super.renderHead(response);
-			
-			response.render(CssHeaderItem.forReference(new PackageResourceReference(WelcomePanel.class, "res/welcome.css")));
-		}
+public class WelcomePanel extends SimplePanel {
+    
+    public WelcomePanel(String id, IModel<String> model) {
+        super(id, model);
+        
+        messageLabel.add(AttributeModifier.append("class", "welcome"));
+    }
 
-	}	
+    @Override
+    public void renderHead(IHeaderResponse response) {
+        super.renderHead(response);
+        
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(WelcomePanel.class, "res/welcome.css")));
+    }
+
+}
+```
 	
 You can use **@Inject** to retrieve all extensions for `Section` extension point (see demo/app/.../HomePage.java).
 
-    public class HomePage extends WebPage {
-    
-        @Inject
-        private List<Section> sectionExtensions; // this field is populate by wicket-plugin
+```java
+public class HomePage extends WebPage {
 
-        public HomePage() {     
-            ...
+    @Inject
+    private List<Section> sectionExtensions; // this field is populate by wicket-plugin
 
-			// add section extensions
-			sections.addAll(sectionExtensions);
+    public HomePage() {     
+        ...
 
-			// add tabbed panel to page
-			add(new ImageTabbedPanel<Section>("tabs", sections));        
-		}
-        
+        // add section extensions
+        sections.addAll(sectionExtensions);
+
+        // add tabbed panel to page
+        add(new ImageTabbedPanel<Section>("tabs", sections));        
     }
+    
+}
+```
 
 Another option (without annotation) to retrieves all extensions for an extension point is **pluginManager.getExtensions(Section.class)**.   
 For example:
 	
-	PluginManager pluginManager = Application.get().getMetaData(PluginManagerInitializer.PLUGIN_MANAGER_KEY);
-	List<Section> sectionExtensions = pluginManager.getExtensions(Section.class);
+```java
+PluginManager pluginManager = Application.get().getMetaData(PluginManagerInitializer.PLUGIN_MANAGER_KEY);
+List<Section> sectionExtensions = pluginManager.getExtensions(Section.class);
+```
 
 If you want to supply a custom PluginManager than your Application must implements PluginManagerFactory.
 
@@ -154,8 +162,10 @@ In demo/plugins/* I implemented two plugins: plugin1, plugin2 (each plugin adds 
 The first plugin contributes with some JavaScript files to the head of page and the second plugin contributes with a Css file to the head of page.  
 
 To run the demo application use:  
- 
-    ./run-demo.sh
+
+```bash 
+./run-demo.sh
+```
     
 In the internet browser type http://localhost:8081/.
 
