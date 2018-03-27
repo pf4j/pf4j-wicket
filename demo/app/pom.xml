@@ -3,12 +3,12 @@
 
     <parent>
         <groupId>org.pf4j.demo</groupId>
-        <artifactId>wicket-plugin-demo-parent</artifactId>
+        <artifactId>pf4j-wicket-demo-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>wicket-plugin-demo-app</artifactId>
+    <artifactId>pf4j-wicket-demo-app</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Demo App</name>
@@ -43,7 +43,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-                    <warName>wicket-plugin-demo</warName>
+                    <warName>pf4j-wicket-demo</warName>
                 </configuration>
             </plugin>
 
@@ -93,12 +93,12 @@
 		<!-- Plugins -->
         <dependency>
             <groupId>org.pf4j</groupId>
-            <artifactId>wicket-plugin</artifactId>
+            <artifactId>pf4j-wicket</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.pf4j.demo</groupId>
-            <artifactId>wicket-plugin-demo-api</artifactId>
+            <artifactId>pf4j-wicket-demo-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 
