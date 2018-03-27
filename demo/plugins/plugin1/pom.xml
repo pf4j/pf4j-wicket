@@ -3,12 +3,12 @@
 
     <parent>
         <groupId>org.pf4j.demo</groupId>
-        <artifactId>wicket-plugin-demo-plugins</artifactId>
+        <artifactId>pf4j-wicket-demo-plugins</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>wicket-plugin-demo-plugin1</artifactId>
+    <artifactId>pf4j-wicket-demo-plugin1</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Demo Plugin #1</name>

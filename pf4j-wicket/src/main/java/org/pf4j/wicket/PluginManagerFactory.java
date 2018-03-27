@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Decebal Suiu
+ * Copyright (C) 2012-present the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,27 +15,18 @@
  */
 package org.pf4j.wicket;
 
-import org.apache.wicket.application.AbstractClassResolver;
-import org.pf4j.PluginClassLoader;
-import org.pf4j.PluginWrapper;
+import org.pf4j.PluginManager;
+
+import java.nio.file.Path;
 
 /**
- * This resolver uses the {@link PluginClassLoader} to resolve any classes that
- * cannot directly be loaded by the Wicket classloader.
+ * Factory class to create {@link PluginManager}.
+ * This class is used in {@link PluginManagerInitializer}.
  *
  * @author Decebal Suiu
  */
-public class PluginClassResolver extends AbstractClassResolver {
+public interface PluginManagerFactory {
 
-	private final PluginWrapper plugin;
-
-	public PluginClassResolver(PluginWrapper plugin) {
-		this.plugin = plugin;
-	}
-
-	@Override
-	public ClassLoader getClassLoader() {
-		return plugin.getPluginClassLoader();
-	}
+	PluginManager createPluginManager(Path pluginsDir);
 
 }

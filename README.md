@@ -1,10 +1,10 @@
-Plugin framework for Wicket
-=====================
+# PF4J Wicket, A Plugin framework for Wicket
+
 
 [![Travis CI Build Status](https://travis-ci.org/pf4j/wicket-plugin.png)](https://travis-ci.org/pf4j/wicket-plugin)
 [![Maven Central](http://img.shields.io/maven-central/v/org.pf4j/wicket-plugin.svg)](http://search.maven.org/#search|ga|1|wicket-plugin)
 
-A simple plugin framework for wicket based on [PF4J] (https://github.com/decebals/pf4j). You can view wicket-plugin as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
+A simple plugin framework for wicket based on [PF4J] (https://github.com/pf4j/pf4j). You can view pf4j-wicket as a wrapper over PF4J (that is more general and can be used to create a modular Swing application for example).  
 
 Features/Benefits
 -------------------
@@ -29,18 +29,18 @@ In your pom.xml you must define the dependencies to wicket plugin artifacts with
 ```xml
 <dependency>
     <groupId>org.pf4j</groupId>
-    <artifactId>wicket-plugin</artifactId>
-    <version>${wicket-plugin.version}</version>
+    <artifactId>pf4j-wicket</artifactId>
+    <version>${pf4j-wicket.version}</version>
 </dependency>
 ```
 
-where ${wicket-plugin.version} is the last wicket plugin version.
+where ${pf4j-wicket.version} is the last wicket plugin version.
 
-You may want to check for the latest released version using [Maven Search](http://search.maven.org/#search%7Cga%7C1%7Cwicket-plugin)
+You may want to check for the latest released version using [Maven Search](http://search.maven.org/#search%7Cga%7C1%7Cpf4j-wicket)
 
 How to use
 -------------------
-It's very easy to use wicket-plugin. All you need to do is to add a dependency to wicket-plugin in your pom.xml.
+It's very easy to use pf4j-wicket. All you need to do is to add a dependency to pf4j-wicket in your pom.xml.
 The main challenge for you to transform a monolithic wicket application in a modular wicket application is to identify what's your extension points and 
 to write extensions for these extension point in your plugins.
 
@@ -125,7 +125,7 @@ You can use **@Inject** to retrieve all extensions for `Section` extension point
 public class HomePage extends WebPage {
 
     @Inject
-    private List<Section> sectionExtensions; // this field is populate by wicket-plugin
+    private List<Section> sectionExtensions; // this field is populate by pf4j-wicket
 
     public HomePage() {     
         ...
@@ -176,7 +176,7 @@ Much of the conversation between developers and users is managed through [mailin
 
 Versioning
 ------------
-Wicket-Plugin will be maintained under the Semantic Versioning guidelines as much as possible.
+PF4J Wicket Plugin will be maintained under the Semantic Versioning guidelines as much as possible.
 
 Releases will be numbered with the follow format:
 
@@ -192,7 +192,7 @@ For more information on SemVer, please visit http://semver.org/.
 
 License
 --------------
-Copyright 2012 Decebal Suiu
+Copyright (C) 2012-present the original author or authors.
  
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with
 the License. You may obtain a copy of the License in the LICENSE file, or at:
