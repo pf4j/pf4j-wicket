@@ -16,9 +16,9 @@ from wicket without be aware that your code is located in a plugin.
 Components
 -------------------
 - **WicketPlugin** is a Plugin that implements IInitializer (hook for init/destroy application).
-- **PluginManagerInitializer** creates the plugin manager and register the created plugin manager in application using MetaDataKey.
+- **PluginManagerInitializer** creates the plugin manager and register the created plugin manager in application using `MetaDataKey`.
 This class load, init, start, stop and destroy plugins (using the plugin manager object).
-- **PluginComponentInjector** scans the wicket component class for fields annotated by @javax.inject.Inject, 
+- **PluginComponentInjector** scans the wicket component class for fields annotated by `@javax.inject.Inject`, 
 looks up extensions of the required type for the given field from the plugin manager, and injects the extensions.
 
 Using Maven
@@ -147,16 +147,16 @@ PluginManager pluginManager = Application.get().getMetaData(PluginManagerInitial
 List<Section> sectionExtensions = pluginManager.getExtensions(Section.class);
 ```
 
-If you want to supply a custom PluginManager than your Application must implements PluginManagerFactory.
+If you want to supply a custom `PluginManager` than your `Application` must implements `PluginManagerFactory`.
 
 For more information please see the demo sources.
 
 Demo
 -------------------
 I have a tiny demo application. The demo application is in demo folder.
-In demo/api folder I declared an extension point (_Section_) that is a tab in a wicket TabbedPanel.
+In `demo/api` folder I declared an extension point (_Section_) that is a tab in a wicket TabbedPanel.
 Each section has an title, an icon and a content (a simple text message in my demo).
-In demo/plugins/* I implemented two plugins: plugin1, plugin2 (each plugin adds an extension for _Section_).
+In `demo/plugins/*` I implemented two plugins: plugin1, plugin2 (each plugin adds an extension for _Section_).
 
 The first plugin contributes with some JavaScript files to the head of page and the second plugin contributes with a Css file to the head of page.  
 
@@ -175,7 +175,7 @@ Much of the conversation between developers and users is managed through [mailin
 
 Versioning
 ------------
-PF4J Wicket will be maintained under the Semantic Versioning guidelines as much as possible.
+This project will be maintained under the Semantic Versioning guidelines as much as possible.
 
 Releases will be numbered with the follow format:
 
