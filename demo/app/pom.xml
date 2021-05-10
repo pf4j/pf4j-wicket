@@ -15,7 +15,7 @@
 
     <properties>
         <slf4j.version>1.6.4</slf4j.version>
-        <jetty.version>9.4.34.v20201102</jetty.version>
+        <jetty.version>9.4.38.v20210224</jetty.version>
     </properties>
 
     <build>
